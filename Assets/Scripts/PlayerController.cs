@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
+    [SerializeField] private GameObject projectilePrefab;
     private float horizontalInput;
     private int xRange = 15;
 
@@ -26,5 +27,11 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
         transform.Translate(horizontalInput * Time.deltaTime * speed * Vector3.right);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Launch a projectile from the player
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
     }
 }
