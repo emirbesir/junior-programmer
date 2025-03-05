@@ -3,7 +3,7 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
-    private Vector3 offset1 = new Vector3(0, 5, -12);
+    private Vector3 offset1 = new Vector3(0, 5, -11);
     private Vector3 offset2 = new Vector3(0, 2, 0.5f);
     private Quaternion startRotation;
     private bool isCameraInsideView = false;
