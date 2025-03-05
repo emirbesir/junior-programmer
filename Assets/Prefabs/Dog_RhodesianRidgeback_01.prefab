@@ -4928,8 +4928,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7953619817128047522}
   - component: {fileID: 8706917512720013756}
+  - component: {fileID: -6005788985883208876}
   - component: {fileID: 5997828953699441089}
   - component: {fileID: 121741706292116188}
+  - component: {fileID: -5214557885330791226}
   m_Layer: 0
   m_Name: Dog_RhodesianRidgeback_01
   m_TagString: Untagged
@@ -5011,6 +5013,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &-6005788985883208876
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7430718386545380189}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0671289, y: 0.17408209, z: 0.23350067}
+  m_Center: {x: -0.00000007152558, y: 0.092098765, z: 0.026738359}
 --- !u!114 &5997828953699441089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5037,7 +5060,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBound: 30
-  lowerBound: -10
+  lowerBound: -5
+--- !u!114 &-5214557885330791226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7430718386545380189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24cbd251639074498620fa3ab36317a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7507308991573770750
 GameObject:
   m_ObjectHideFlags: 0

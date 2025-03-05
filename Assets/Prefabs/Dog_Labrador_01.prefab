@@ -4333,8 +4333,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7318785371594454331}
   - component: {fileID: 4771827859643727209}
+  - component: {fileID: -3659034596987925760}
   - component: {fileID: 2232724034133760996}
   - component: {fileID: 9059400815701578976}
+  - component: {fileID: 3375504704715480760}
   m_Layer: 0
   m_Name: Dog_Labrador_01
   m_TagString: Untagged
@@ -4416,6 +4418,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &-3659034596987925760
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064209307865084145}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07455434, y: 0.18448877, z: 0.22246599}
+  m_Center: {x: 0.0009993977, y: 0.09194493, z: 0.030981515}
 --- !u!114 &2232724034133760996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4442,7 +4465,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBound: 30
-  lowerBound: -10
+  lowerBound: -5
+--- !u!114 &3375504704715480760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064209307865084145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24cbd251639074498620fa3ab36317a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6143019178670424686
 GameObject:
   m_ObjectHideFlags: 0
