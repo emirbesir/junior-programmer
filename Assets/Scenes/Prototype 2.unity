@@ -867,11 +867,11 @@ MonoBehaviour:
   spawnRangeX: 12
   spawnPosZ: 20
   startDelay: 2
-  spawnInterval: 1.75
+  spawnInterval: 2
   aggroSpawnPosX: 20
   aggroSpawnRangeZ: 15
   aggroStartDelay: 2
-  aggroSpawnInterval: 1.5
+  aggroSpawnInterval: 4
 --- !u!4 &807113357
 Transform:
   m_ObjectHideFlags: 0
@@ -1191,6 +1191,7 @@ GameObject:
   - component: {fileID: 1551913845}
   - component: {fileID: 1551913847}
   - component: {fileID: 1551913846}
+  - component: {fileID: 1551913848}
   m_Layer: 5
   m_Name: Score Panel
   m_TagString: Untagged
@@ -1256,6 +1257,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551913844}
   m_CullTransparentMesh: 1
+--- !u!114 &1551913848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551913844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b9cf9305598fd418b0eb7e32fd5519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1614289889}
+  currentScore: 0
 --- !u!1 &1590138454
 GameObject:
   m_ObjectHideFlags: 0
