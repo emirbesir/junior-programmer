@@ -4465,6 +4465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300fbab220a86fd4e961e083028f9843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthDisplayer: {fileID: 8409903307941834596, guid: f7e3294c34810fc4e8618554e389de7d, type: 3}
   topBound: 30
   lowerBound: -5
 --- !u!114 &3375504704715480760
@@ -4491,6 +4492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5be70860c82e8843a7329c2ac555480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthDisplayer: {fileID: 8409903307941834596, guid: f7e3294c34810fc4e8618554e389de7d, type: 3}
 --- !u!1 &6143019178670424686
 GameObject:
   m_ObjectHideFlags: 0

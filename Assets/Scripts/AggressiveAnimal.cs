@@ -6,8 +6,8 @@ public class AggressiveAnimal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player has entered the aggressive animal's trigger zone!");
-            Debug.Log("Game Over!");
+            EventManager.TriggerAnimalHit();
+            Destroy(gameObject);
         }
     }
 }

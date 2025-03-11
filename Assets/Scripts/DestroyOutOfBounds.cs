@@ -5,12 +5,6 @@ public class DestroyOutOfBounds : MonoBehaviour
     [SerializeField] private float topBound = 30;
     [SerializeField] private float lowerBound = -5;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -20,7 +14,7 @@ public class DestroyOutOfBounds : MonoBehaviour
         }
         else if (transform.position.z < lowerBound)
         {
-            Debug.Log("Game Over!");
+            EventManager.TriggerOutOfBounds();
             Destroy(gameObject);
         }
     }
