@@ -4337,6 +4337,7 @@ GameObject:
   - component: {fileID: 2232724034133760996}
   - component: {fileID: 9059400815701578976}
   - component: {fileID: 3375504704715480760}
+  - component: {fileID: -8055338039255627484}
   m_Layer: 0
   m_Name: Dog_Labrador_01
   m_TagString: Untagged
@@ -4476,6 +4477,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a24cbd251639074498620fa3ab36317a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8055338039255627484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6064209307865084145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5be70860c82e8843a7329c2ac555480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6143019178670424686
