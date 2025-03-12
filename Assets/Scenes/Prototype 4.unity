@@ -792,6 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   hasPowerup: 0
+  powerupStrength: 15
 --- !u!850595691 &1982420029
 LightingSettings:
   m_ObjectHideFlags: 0
