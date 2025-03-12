@@ -4,10 +4,20 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnRange = 9.0f;
+    [SerializeField] private int enemyCount;
 
     private void Start()
     {
         SpawnEnemyWave(3);
+    }
+
+    private void Update()
+    {
+        enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
+        if (enemyCount == 0)
+        {
+            SpawnEnemyWave(1);
+        }
     }
 
     private void SpawnEnemyWave(int enemiesToSpawn)
