@@ -9,17 +9,22 @@ public class PlayerController : MonoBehaviour
     [Header("Particle System")]
     [SerializeField] private ParticleSystem explosionParticle;
     [SerializeField] private ParticleSystem dirtParticle;
+    [Header("Audio")]
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip crashSound;
 
     [HideInInspector]
     public bool gameOver = false;
 
     private Rigidbody playerRb;
     private Animator playerAnim;
+    private AudioSource playerAudio;
 
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -35,6 +40,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             dirtParticle.Stop();
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
     }
 
@@ -51,6 +57,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetInteger("DeathType_int", 1);
             dirtParticle.Stop();
             explosionParticle.Play();
+            playerAudio.PlayOneShot(crashSound, 1.0f);
             gameOver = true;
             Debug.Log("Game Over!");
         }
