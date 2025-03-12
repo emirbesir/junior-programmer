@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 10.0f;
-
+    private float xBounds = 25f;
+    private float zBounds = 25f;
     private float horizontalInput;
     private float verticalInput;
     private Rigidbody playerRb;
@@ -24,5 +25,12 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement = movementSpeed * new Vector3(horizontalInput, 0, verticalInput);
         playerRb.linearVelocity = movement;
+
+        // Clamp the player's position within the bounds
+        playerRb.position = new Vector3(
+            Mathf.Clamp(playerRb.position.x, -xBounds, xBounds),
+            playerRb.position.y,
+            Mathf.Clamp(playerRb.position.z, -zBounds, zBounds)
+        );
     }
 }
