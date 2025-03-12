@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 992676798}
   - component: {fileID: 992676799}
   m_Layer: 0
-  m_Name: FocalPoint
+  m_Name: Focal Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 1554734897}
   - component: {fileID: 1554734900}
   - component: {fileID: 1554734896}
+  - component: {fileID: 1554734901}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -727,6 +728,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1554734901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554734895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1804a41f1cd264c81b509611c358d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!850595691 &1982420029
 LightingSettings:
   m_ObjectHideFlags: 0
