@@ -6,11 +6,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravityModifier = 1f;
     [SerializeField] private bool isOnGround = true;
     public bool gameOver = false;
+
     private Rigidbody playerRb;
+    private Animator playerAnim;
 
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAnim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
+            playerAnim.SetTrigger("Jump_trig");
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }

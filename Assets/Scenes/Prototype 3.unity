@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 10
-  gravityModifier: 1
+  gravityModifier: 2
   isOnGround: 1
   gameOver: 0
 --- !u!1 &835818919
@@ -635,6 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  leftBound: -15
 --- !u!65 &835818923
 BoxCollider:
   m_ObjectHideFlags: 0
