@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [Header("Enemy")]
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnRange = 9.0f;
+    [Header("Wave")]
     [SerializeField] private int enemyCount;
+    [SerializeField] private int waveNumber = 1;
 
     private void Start()
     {
-        SpawnEnemyWave(3);
+        SpawnEnemyWave(waveNumber);
     }
 
     private void Update()
@@ -16,7 +19,8 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
         if (enemyCount == 0)
         {
-            SpawnEnemyWave(1);
+            waveNumber++;
+            SpawnEnemyWave(waveNumber);
         }
     }
 
