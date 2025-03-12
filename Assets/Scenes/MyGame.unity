@@ -131,9 +131,9 @@ GameObject:
   - component: {fileID: 34563795}
   - component: {fileID: 34563794}
   - component: {fileID: 34563793}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,9 +240,9 @@ GameObject:
   - component: {fileID: 41349261}
   - component: {fileID: 41349260}
   - component: {fileID: 41349259}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,10 +391,10 @@ MonoBehaviour:
   CameraSide: 1
   CameraDistance: 4
   AvoidObstacles:
-    Enabled: 0
+    Enabled: 1
     CollisionFilter:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 448
     IgnoreTag: 
     CameraRadius: 0.2
     DampingIntoCollision: 0
@@ -451,7 +451,7 @@ Transform:
   m_GameObject: {fileID: 143445057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 1.8000001, z: 0}
+  m_LocalPosition: {x: 0.8, y: 1.3000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -469,9 +469,9 @@ GameObject:
   - component: {fileID: 154352984}
   - component: {fileID: 154352983}
   - component: {fileID: 154352982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Assassin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -653,7 +653,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 1.8000001, z: 0}
+  m_LocalPosition: {x: 0.8, y: 1.3000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -868,9 +868,9 @@ GameObject:
   - component: {fileID: 514765425}
   - component: {fileID: 514765424}
   - component: {fileID: 514765423}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -978,9 +978,9 @@ GameObject:
   - component: {fileID: 646028463}
   - component: {fileID: 646028462}
   - component: {fileID: 646028461}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1243,9 +1243,9 @@ GameObject:
   - component: {fileID: 1130039977}
   - component: {fileID: 1130039976}
   - component: {fileID: 1130039975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1351,9 +1351,9 @@ GameObject:
   - component: {fileID: 1650794167}
   - component: {fileID: 1650794166}
   - component: {fileID: 1650794165}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1459,9 +1459,9 @@ GameObject:
   - component: {fileID: 1717588069}
   - component: {fileID: 1717588068}
   - component: {fileID: 1717588067}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1694,7 +1694,7 @@ Transform:
   m_GameObject: {fileID: 1883877240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 4}
+  m_LocalPosition: {x: 0, y: 0.5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1740,6 +1740,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  xBounds: 25
+  zBounds: 25
 --- !u!1 &1982437423
 GameObject:
   m_ObjectHideFlags: 0
