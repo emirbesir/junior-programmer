@@ -9,9 +9,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool hasPowerup = false;
     [SerializeField] private float powerupStrength = 15.0f;
     [SerializeField] private GameObject powerupIndicator;
+    [Header("Rockets")]
+    [SerializeField] private GameObject rocketPrefab;
 
     private GameObject focalPoint;
     private Rigidbody playerRb;
+    private Powerup.PowerupType powerupType;
+    private Coroutine powerupCountdownCoroutine;
+
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -35,7 +40,15 @@ public class PlayerController : MonoBehaviour
             hasPowerup = true;
             powerupIndicator.SetActive(true);
             Destroy(other.gameObject);
-            StartCoroutine(PowerupCountdownRoutine());
+            if (powerupCountdownCoroutine != null)
+            {
+                StopCoroutine(powerupCountdownCoroutine);
+            }
+            powerupCountdownCoroutine = StartCoroutine(PowerupCountdownRoutine());
+            if (powerupType == Powerup.PowerupType.Rockets)
+            {
+                StartCoroutine(RocketCountdownRoutine());
+            }
         }
     }
 
@@ -46,9 +59,28 @@ public class PlayerController : MonoBehaviour
         powerupIndicator.SetActive(false);
     }
 
+    IEnumerator RocketCountdownRoutine()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            foreach (Enemy enemy in enemies)
+            {
+                GameObject rocket = Instantiate(rocketPrefab, transform.position, rocketPrefab.transform.rotation);
+                Rocket rocketScript = rocket.GetComponent<Rocket>();
+                rocketScript.SetTarget(enemy.transform);
+            }
+            yield return new WaitForSeconds(2);
+        }
+        hasPowerup = false;
+        powerupIndicator.SetActive(false);
+    }
+
+
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        if (collision.gameObject.CompareTag("Enemy") && hasPowerup && powerupType == Powerup.PowerupType.Strength)
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
