@@ -524,9 +524,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5dac2f2e62100d43ba6efb704eaa2be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 15
-  gravityModifier: 2
+  jumpForce: 10
+  gravityModifier: 1
   isOnGround: 1
+  gameOver: 0
 --- !u!1 &835818919
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +726,7 @@ GameObject:
   - component: {fileID: 2014335012}
   m_Layer: 9
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
