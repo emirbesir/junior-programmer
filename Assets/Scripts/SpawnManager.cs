@@ -4,6 +4,9 @@ public class SpawnManager : MonoBehaviour
 {
     [Header("Enemy")]
     [SerializeField] private GameObject enemyPrefab;
+    [Header("Powerup")]
+    [SerializeField] private GameObject powerupPrefab;
+    [Header("Spawn")]
     [SerializeField] private float spawnRange = 9.0f;
     [Header("Wave")]
     [SerializeField] private int enemyCount;
@@ -11,6 +14,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
         SpawnEnemyWave(waveNumber);
     }
 
@@ -19,6 +23,7 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
         if (enemyCount == 0)
         {
+            Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
             waveNumber++;
             SpawnEnemyWave(waveNumber);
         }
