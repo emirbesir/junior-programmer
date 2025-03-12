@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float gravityModifier = 1f;
     [SerializeField] private bool isOnGround = true;
-    [SerializeField] private bool gameOver = false;
+    public bool gameOver = false;
     private Rigidbody playerRb;
 
     private void Awake()
