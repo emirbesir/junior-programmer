@@ -1,12 +1,14 @@
 using UnityEngine;
 
+public enum PowerupType
+{
+    None,
+    Pushback,
+    Rockets,
+    Smash
+}
+
 public class Powerup : MonoBehaviour
 {
-    public enum PowerupType
-    {
-        Strength,
-        Rockets,
-    }
-
-    [SerializeField] public PowerupType powerupType;
+    public PowerupType powerupType;
 }

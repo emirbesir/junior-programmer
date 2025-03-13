@@ -6,16 +6,12 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float speed = 5.0f;
     [Header("Powerup")]
-    [SerializeField] private bool hasPowerup = false;
-    [SerializeField] private float powerupStrength = 15.0f;
-    [SerializeField] private GameObject powerupIndicator;
-    [Header("Rockets")]
-    [SerializeField] private GameObject rocketPrefab;
+    [SerializeField] private PlayerPowerup playerPowerup;
 
     private GameObject focalPoint;
     private Rigidbody playerRb;
-    private Powerup.PowerupType powerupType;
-    private Coroutine powerupCountdownCoroutine;
+    private float forwardInput;
+    private float horizontalInput;
 
     private void Awake()
     {
@@ -26,65 +22,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
-        float forwardInput = Input.GetAxis("Vertical");
-        float horizontalInput = Input.GetAxis("Horizontal");
+        forwardInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+    }
+    private void FixedUpdate()
+    {
         playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
         playerRb.AddForce(focalPoint.transform.right * speed * horizontalInput);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Powerup"))
-        {
-            hasPowerup = true;
-            powerupIndicator.SetActive(true);
-            Destroy(other.gameObject);
-            if (powerupCountdownCoroutine != null)
-            {
-                StopCoroutine(powerupCountdownCoroutine);
-            }
-            powerupCountdownCoroutine = StartCoroutine(PowerupCountdownRoutine());
-            if (powerupType == Powerup.PowerupType.Rockets)
-            {
-                StartCoroutine(RocketCountdownRoutine());
-            }
-        }
-    }
-
-    IEnumerator PowerupCountdownRoutine()
-    {
-        yield return new WaitForSeconds(7);
-        hasPowerup = false;
-        powerupIndicator.SetActive(false);
-    }
-
-    IEnumerator RocketCountdownRoutine()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-            foreach (Enemy enemy in enemies)
-            {
-                GameObject rocket = Instantiate(rocketPrefab, transform.position, rocketPrefab.transform.rotation);
-                Rocket rocketScript = rocket.GetComponent<Rocket>();
-                rocketScript.SetTarget(enemy.transform);
-            }
-            yield return new WaitForSeconds(2);
-        }
-        hasPowerup = false;
-        powerupIndicator.SetActive(false);
-    }
-
-
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerup && powerupType == Powerup.PowerupType.Strength)
+        if (collision.gameObject.CompareTag("Enemy") && playerPowerup.currentPowerupType == PowerupType.Pushback)
         {
-            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
-            enemyRigidbody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+            playerPowerup.PushbackEnemy(collision);
         }
     }
 }

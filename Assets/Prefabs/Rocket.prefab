@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8822648174713968655}
   - component: {fileID: 8887325924032271753}
   - component: {fileID: 4118238468665854042}
+  - component: {fileID: 8383339017008178042}
   - component: {fileID: 3084485326512713666}
   m_Layer: 0
   m_Name: Rocket
@@ -115,6 +116,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8383339017008178042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539402239553958301}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.36510184, y: 0.4190844, z: 3.5514846}
+  m_Center: {x: 0, y: -0.016195457, z: -0.0053982437}
 --- !u!114 &3084485326512713666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70c403553ee6054db7e0d9a136dd630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  rocketStrength: 15
+  aliveTimer: 5
