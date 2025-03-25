@@ -5,22 +5,25 @@ public class PlayerPowerup : MonoBehaviour
 {
     [Header("Powerup")]
     public PowerupType currentPowerupType;
+    [SerializeField] private GameObject powerupIndicator;
+    [SerializeField] private Material powerupIndicatorMaterial;
 
     [Header("Pushback")]
-    [SerializeField] private GameObject pushbackIndicator;
     [SerializeField] private float pushbackStrength = 15.0f;
 
     [Header("Rockets")]
-    [SerializeField] private GameObject rocketIndicator;
     [SerializeField] private GameObject rocketPrefab;
 
-    private GameObject currentPowerupIndicator;
     private Coroutine powerupCountdownCoroutine;
+    private Rigidbody playerRb;
 
+    private void Awake()
+    {
+        playerRb = GetComponent<Rigidbody>();
+    }
     private void Update()
     {
-        UpdateIndicatorPosition(pushbackIndicator);
-        UpdateIndicatorPosition(rocketIndicator);
+        UpdateIndicatorPosition(powerupIndicator);
     }
 
     private void UpdateIndicatorPosition(GameObject indicator)
@@ -44,11 +47,11 @@ public class PlayerPowerup : MonoBehaviour
         if (powerupCountdownCoroutine != null)
         {
             StopCoroutine(powerupCountdownCoroutine);
-            currentPowerupIndicator.SetActive(false);
+            powerupIndicator.SetActive(false);
         }
 
         SetCurrentPowerupIndicator();
-        currentPowerupIndicator.SetActive(true);
+        powerupIndicator.SetActive(true);
         powerupCountdownCoroutine = StartCoroutine(PowerupCountdownRoutine());
     }
 
@@ -57,14 +60,18 @@ public class PlayerPowerup : MonoBehaviour
         switch (currentPowerupType)
         {
             case PowerupType.Pushback:
-                currentPowerupIndicator = pushbackIndicator;
+                powerupIndicatorMaterial.color = Color.white;
                 break;
             case PowerupType.Rockets:
-                currentPowerupIndicator = rocketIndicator;
+                powerupIndicatorMaterial.color = Color.red;
                 StartCoroutine(LaunchRocketsRoutine());
                 break;
+            case PowerupType.Smash:
+                powerupIndicatorMaterial.color = Color.green;
+                StartCoroutine(SmashRoutine());
+                break;
             default:
-                currentPowerupIndicator = null;
+                powerupIndicator = null;
                 break;
         }
     }
@@ -72,7 +79,7 @@ public class PlayerPowerup : MonoBehaviour
     private IEnumerator PowerupCountdownRoutine()
     {
         yield return new WaitForSeconds(6);
-        currentPowerupIndicator.SetActive(false);
+        powerupIndicator.SetActive(false);
         currentPowerupType = PowerupType.None;
     }
 
@@ -82,6 +89,31 @@ public class PlayerPowerup : MonoBehaviour
         {
             LaunchRockets();
             yield return new WaitForSeconds(2);
+        }
+    }
+
+    private IEnumerator SmashRoutine()
+    {
+        while (currentPowerupType == PowerupType.Smash)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                playerRb.linearVelocity = new Vector3(0, 15, 0);
+                yield return new WaitForSeconds(0.2f);
+                playerRb.linearVelocity = new Vector3(0, -50, 0);
+                yield return new WaitForSeconds(0.1f);
+                playerRb.linearVelocity = new Vector3(0, 0, 0);
+                foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+                {
+                    if (Vector3.Distance(transform.position, enemy.transform.position) < 6)
+                    {
+                        Rigidbody enemyRigidbody = enemy.GetComponent<Rigidbody>();
+                        Vector3 awayFromPlayer = enemy.transform.position - transform.position;
+                        enemyRigidbody.AddForce(awayFromPlayer * pushbackStrength, ForceMode.Impulse);
+                    }
+                }
+            }
+            yield return null;
         }
     }
 
