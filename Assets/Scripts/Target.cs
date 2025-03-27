@@ -4,7 +4,7 @@ public class Target : MonoBehaviour
 {
     private float minSpeed = 12;
     private float maxSpeed = 16;
-    private float maxTorque = 10;
+    private float maxTorque = 2;
     private float xRange = 4;
     private float ySpawnPos = -6;
     private Rigidbody rb;
@@ -30,5 +30,15 @@ public class Target : MonoBehaviour
     Vector3 RandomSpawnPos()
     {
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
+    }
+
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
     }
 }
