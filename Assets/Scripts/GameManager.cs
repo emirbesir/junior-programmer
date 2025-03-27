@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Settings")]
     [SerializeField] private List<GameObject> targets;
     [SerializeField] private float spawnRate = 1.0f;
+
+    [Header("UI Settings")]
+    [SerializeField] private int score;
+    [SerializeField] private TextMeshProUGUI scoreText;
+
     private void Start()
     {
         StartCoroutine(SpawnTarget());
+        score = 0;
+        scoreText.text = "Score: " + score;
     }
 
     IEnumerator SpawnTarget()
