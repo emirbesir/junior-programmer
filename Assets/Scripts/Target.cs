@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    private float minSpeed = 12;
-    private float maxSpeed = 16;
-    private float maxTorque = 2;
-    private float xRange = 4;
-    private float ySpawnPos = -6;
+    [Header("Target Settings")]
+    [SerializeField] private float minSpeed = 12;
+    [SerializeField] private float maxSpeed = 16;
+    [SerializeField] private float maxTorque = 2;
+    [SerializeField] private float xRange = 4;
+    [SerializeField] private float ySpawnPos = -6;
+
+    private GameManager gameManager;
     private Rigidbody rb;
 
     private void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
         rb.AddForce(RandomForce(), ForceMode.Impulse);
         rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
@@ -35,6 +39,7 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        gameManager.UpdateScore(5);
     }
 
     private void OnTriggerEnter(Collider other)
