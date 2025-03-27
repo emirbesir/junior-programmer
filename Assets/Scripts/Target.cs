@@ -10,6 +10,8 @@ public class Target : MonoBehaviour
     [SerializeField] private float maxTorque = 2;
     [SerializeField] private float xRange = 4;
     [SerializeField] private float ySpawnPos = -6;
+    [Header("Target Effects")]
+    [SerializeField] private ParticleSystem explosionParticle;
 
     private GameManager gameManager;
     private Rigidbody rb;
@@ -41,6 +43,7 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         gameManager.UpdateScore(pointValue);
     }
 
