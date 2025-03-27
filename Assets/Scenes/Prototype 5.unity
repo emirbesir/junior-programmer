@@ -354,6 +354,8 @@ MonoBehaviour:
   - {fileID: 6782730228756677012, guid: 6b14de71112f8b740916b39138dcfe2b, type: 3}
   - {fileID: 4960871690904652680, guid: da91d0c8d839e604caeb50e67d2417c0, type: 3}
   spawnRate: 1
+  score: 0
+  scoreText: {fileID: 0}
 --- !u!4 &365436483
 Transform:
   m_ObjectHideFlags: 0
@@ -639,8 +641,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8887514be60924b0ba1319bd10d63d0f, type: 2}
+  m_sharedMaterial: {fileID: 21010144202549244, guid: 8887514be60924b0ba1319bd10d63d0f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -680,7 +682,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -865,7 +867,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 667092f46768d294b83327145bab892c, type: 2}
+  - {fileID: 2100000, guid: 6540de3914a177a4a975aa88620feaa6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
