@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     [Header("Game Settings")]
@@ -12,7 +14,10 @@ public class GameManager : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private int score;
     [SerializeField] private TextMeshProUGUI scoreText;
+
+    [Header("Game Over Settings")]
     [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private GameObject restartButton;
 
     private void Start()
     {
@@ -41,6 +46,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
+        restartButton.SetActive(true);
         isGameActive = false;
+    }
+
+    public void RestartGame() 
+    { 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
