@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Settings")]
     [SerializeField] private List<GameObject> targets;
     [SerializeField] private float spawnRate = 1.0f;
+    public bool isGameActive = true;
 
     [Header("UI Settings")]
     [SerializeField] private int score;
@@ -18,11 +19,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTarget());
         score = 0;
         UpdateScore(score);
+        isGameActive = true;
     }
 
     IEnumerator SpawnTarget()
     {
-        while (true)
+        while (isGameActive)
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, targets.Count);
@@ -39,5 +41,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
+        isGameActive = false;
     }
 }
