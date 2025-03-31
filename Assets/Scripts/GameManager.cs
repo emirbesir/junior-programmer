@@ -11,12 +11,13 @@ public class GameManager : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private int score;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI gameOverText;
 
     private void Start()
     {
         StartCoroutine(SpawnTarget());
         score = 0;
-        UpdateScore(0);
+        UpdateScore(score);
     }
 
     IEnumerator SpawnTarget()
@@ -33,5 +34,10 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
     }
 }
