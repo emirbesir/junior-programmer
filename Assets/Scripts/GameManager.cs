@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,16 +13,33 @@ public class GameManager : MonoBehaviour
     public bool isGameActive = true;
 
     [Header("Score Settings")]
-    [SerializeField] private int score;
-    [SerializeField] private GameObject scoreTextObject;
+    [SerializeField] private int score = 0;
+    [SerializeField] private GameObject scoreDisplay;
     [SerializeField] private TextMeshProUGUI scoreText;
+
+    [Header("Lives Settings")]
+    [SerializeField] private int lives = 3;
+    [SerializeField] private GameObject livesDisplay;
+    [SerializeField] private TextMeshProUGUI livesText;
 
     [Header("Title Screen Settings")]
     [SerializeField] private GameObject titleScreen;
 
+    [Header("Pause Screen Settings")]
+    [SerializeField] private GameObject pauseScreen;
+    public bool isPaused = false;
+
     [Header("Game Over Settings")]
     [SerializeField] private TextMeshProUGUI gameOverText;
     [SerializeField] private GameObject restartButton;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+    }
 
     IEnumerator SpawnTarget()
     {
@@ -39,6 +57,19 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    public void UpdateLives(int livesToAdd)
+    {
+        if (isGameActive)
+        {
+            lives += livesToAdd;
+            livesText.text = "Lives: " + lives;
+            if (lives <= 0)
+            {
+                GameOver();
+            }
+        }
+    }
+
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
@@ -54,10 +85,28 @@ public class GameManager : MonoBehaviour
     {
         spawnRate /= difficulty;
         isGameActive = true;
-        score = 0;
         StartCoroutine(SpawnTarget());
-        UpdateScore(score);
+        score = 0;
+        UpdateScore(0);
+        lives = 3;
+        UpdateLives(0);
         titleScreen.SetActive(false);
-        scoreTextObject.SetActive(true);
+        scoreDisplay.SetActive(true);
+        livesDisplay.SetActive(true);
+    }
+
+    private void PauseGame()
+    {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseScreen.SetActive(false);
+        }
     }
 }
