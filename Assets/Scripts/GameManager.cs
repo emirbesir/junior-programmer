@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Score Settings")]
     [SerializeField] private int score;
+    [SerializeField] private GameObject scoreTextObject;
     [SerializeField] private TextMeshProUGUI scoreText;
 
     [Header("Title Screen Settings")]
@@ -57,6 +58,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTarget());
         UpdateScore(score);
         titleScreen.SetActive(false);
-        scoreText.gameObject.SetActive(true);
+        scoreTextObject.SetActive(true);
     }
 }
