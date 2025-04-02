@@ -535,16 +535,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90578505909a87f4cbf591362e09e1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefabs:
+  enemyPrefabs:
   - {fileID: 1789805457658746918, guid: f32acef7aed0bb1458f64d15168ca506, type: 3}
   - {fileID: 6189267472373139813, guid: e197d0d78b6924041a639837dfef4d5f, type: 3}
   - {fileID: 8119503313880375261, guid: 2bf014b71be60f043818cf9adacc300d, type: 3}
-  _enemyCount: 0
-  _waveNumber: 1
-  _powerupPrefabs:
+  enemySpawnRange: 23
+  powerupPrefabs:
   - {fileID: 620778021817864721, guid: b453e1ee3d8eb97439338d677c8c7460, type: 3}
-  _powerupSpawnRange: 9
-  _enemySpawnRange: 23
+  powerupSpawnRange: 12
 --- !u!4 &395970718
 Transform:
   m_ObjectHideFlags: 0
