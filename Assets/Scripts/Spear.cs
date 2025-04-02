@@ -1,15 +1,16 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Spear : MonoBehaviour
 {
-    [Header("Spear Properties")]
+    [Header("Spear Settings")]
     [SerializeField] private int damage = 10;
     [SerializeField] private float speed = 10f;
-    [SerializeField] private bool isOnGround = false;
-    [Header("Destroy Settings")]
     [SerializeField] private float destroyDelay = 10f;
 
     private Rigidbody rb;
+    private bool isOnGround = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,16 +23,17 @@ public class Spear : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isOnGround)
+        if (!isOnGround && collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            var health = collision.gameObject.GetComponent<EnemyHealth>();
+            if (health) health.TakeDamage(damage);
             Destroy(gameObject);
         }
-        if (collision.gameObject.CompareTag("Ground"))
+        else if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
-            Destroy(gameObject, destroyDelay);
             rb.linearVelocity = Vector3.zero;
+            Destroy(gameObject, destroyDelay);
         }
     }
 }
