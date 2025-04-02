@@ -10,12 +10,15 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            PerformAttack();
         }
     }
 
-    private void Attack()
+    private void PerformAttack()
     {
-        Instantiate(spearPrefab, attackPoint.position, attackPoint.rotation);
+        if (spearPrefab && attackPoint)
+        {
+            Instantiate(spearPrefab, attackPoint.position, attackPoint.rotation);
+        }
     }
 }
