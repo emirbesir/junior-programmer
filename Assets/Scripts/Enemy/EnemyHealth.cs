@@ -10,16 +10,16 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount)
     {
-        currentHealth -= damage;
+        currentHealth -= amount;
         if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    public void Die()
+    private void Die()
     {
         Destroy(gameObject);
     }
