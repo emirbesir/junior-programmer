@@ -1,27 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyMovement : MonoBehaviour
 {
-    [Header("Enemy Movement")]
+    [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 10.0f;
-    [Header("Enemy Target")]
     [SerializeField] private GameObject target;
-    private Rigidbody enemyRb;
+
+    private Rigidbody rb;
 
     private void Awake()
     {
-        enemyRb = GetComponent<Rigidbody>();
-        enemyRb.freezeRotation = true;
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     private void FixedUpdate()
     {
-        MoveEnemy();
-    }
-
-    private void MoveEnemy()
-    {
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        enemyRb.linearVelocity = direction * movementSpeed;
+        if (target)
+        {
+            Vector3 direction = (target.transform.position - transform.position).normalized;
+            rb.linearVelocity = direction * movementSpeed;
+        }
     }
 }
