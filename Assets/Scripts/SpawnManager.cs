@@ -2,70 +2,71 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _enemyPrefabs;
-    [SerializeField] private int _enemyCount;
-    [SerializeField] private int _waveNumber = 1;
-    [SerializeField] private GameObject[] _powerupPrefabs;
+    [Header("Enemy Settings")]
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private float enemySpawnRange = 23f;
 
-    [SerializeField] private float _powerupSpawnRange = 12;
-    [SerializeField] private float _enemySpawnRange = 23;
+    [Header("Powerup Settings")]
+    [SerializeField] private GameObject[] powerupPrefabs;
+    [SerializeField] private float powerupSpawnRange = 12f;
+
+    private int waveNumber = 1;
 
     private void Start()
     {
-        SpawnEnemyWave(_waveNumber);
+        SpawnEnemyWave(waveNumber);
         SpawnPowerup(1);
     }
 
     private void Update()
     {
-        _enemyCount = FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None).Length;
-        if (_enemyCount == 0)
+        int remainingEnemies = FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None).Length;
+        if (remainingEnemies == 0)
         {
-            _waveNumber++;
-            SpawnEnemyWave(_waveNumber);
+            waveNumber++;
+            SpawnEnemyWave(waveNumber);
             SpawnPowerup(1);
         }
     }
 
-    private void SpawnEnemyWave(int enemiesToSpawn)
+    private void SpawnEnemyWave(int count)
     {
-        int index = Random.Range(0, _enemyPrefabs.Length);
-        for (int i = 0; i < enemiesToSpawn; i++)
+        for (int i = 0; i < count; i++)
         {
-            Instantiate(_enemyPrefabs[index], GenerateEnemySpawnPosition(), Quaternion.identity);
+            int index = Random.Range(0, enemyPrefabs.Length);
+            Instantiate(enemyPrefabs[index], GenerateEnemySpawnPosition(), Quaternion.identity);
         }
     }
 
-    private void SpawnPowerup(int powerupsToSpawn)
+    private void SpawnPowerup(int count)
     {
-        int index = Random.Range(0, _powerupPrefabs.Length);
-        for (int i = 0; i < powerupsToSpawn; i++)
+        for (int i = 0; i < count; i++)
         {
-            Instantiate(_powerupPrefabs[index], GeneratePowerupSpawnPosition(), Quaternion.identity);
+            int index = Random.Range(0, powerupPrefabs.Length);
+            Instantiate(powerupPrefabs[index], GeneratePowerupSpawnPosition(), Quaternion.identity);
         }
     }
 
     private Vector3 GenerateEnemySpawnPosition()
     {
-        int spawnPoint = Random.Range(0, 4);
-        switch (spawnPoint)
+        int edge = Random.Range(0, 4);
+        float x = Random.Range(-enemySpawnRange, enemySpawnRange);
+        float z = Random.Range(-enemySpawnRange, enemySpawnRange);
+
+        switch (edge)
         {
-            case 0:
-                return new Vector3(Random.Range(-_enemySpawnRange, _enemySpawnRange), 1, _enemySpawnRange);
-            case 1:
-                return new Vector3(Random.Range(-_enemySpawnRange, _enemySpawnRange), 1, -_enemySpawnRange);
-            case 2:
-                return new Vector3(_enemySpawnRange, 1, Random.Range(-_enemySpawnRange, _enemySpawnRange));
-            case 3:
-                return new Vector3(-_enemySpawnRange, 1, Random.Range(-_enemySpawnRange, _enemySpawnRange));
-            default:
-                Debug.LogError("Invalid spawn point");
-                return new Vector3(_enemySpawnRange, 1, _enemySpawnRange);
+            case 0: return new Vector3(x, 1, enemySpawnRange);
+            case 1: return new Vector3(x, 1, -enemySpawnRange);
+            case 2: return new Vector3(enemySpawnRange, 1, z);
+            case 3: return new Vector3(-enemySpawnRange, 1, z);
+            default: return Vector3.zero;
         }
     }
 
     private Vector3 GeneratePowerupSpawnPosition()
     {
-        return new Vector3(Random.Range(-_powerupSpawnRange, _powerupSpawnRange), 1, Random.Range(-_powerupSpawnRange, _powerupSpawnRange));
+        float x = Random.Range(-powerupSpawnRange, powerupSpawnRange);
+        float z = Random.Range(-powerupSpawnRange, powerupSpawnRange);
+        return new Vector3(x, 1, z);
     }
 }
