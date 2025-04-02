@@ -1,71 +1,60 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Reference")]
+    [Header("References")]
     [SerializeField] private Transform cam;
-    [Header("Movement")]
+
+    [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 10.0f;
     [SerializeField] private float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
-    [Header("Bounds")]
     [SerializeField] private float xBounds = 25f;
     [SerializeField] private float zBounds = 25f;
 
-    private Rigidbody playerRb;
-    private Vector3 direction;
+    private Rigidbody rb;
+    private float turnSmoothVelocity;
+    private Vector3 inputDirection;
 
     private void Awake()
     {
-        playerRb = GetComponent<Rigidbody>();
-        playerRb.freezeRotation = true;
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
-        GetInput();
+        inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
-        ConstrainPlayerPosition();
+        HandleMovement();
+        ClampPosition();
     }
 
-    private void GetInput()
+    private void HandleMovement()
     {
-        // Get the player's input
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        direction = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-    }
-
-    private void MovePlayer()
-    {
-        if (direction.magnitude >= 0.05f)
+        if (inputDirection.sqrMagnitude < 0.01f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0, angle, 0);
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
 
-            // Move the player based on the input
-            Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
-            playerRb.linearVelocity = moveDir.normalized * movementSpeed;
-        }
-        else
-        {
-            playerRb.linearVelocity = Vector3.zero;
-        }
+        float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0, smoothedAngle, 0);
+
+        Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+        rb.linearVelocity = moveDir.normalized * movementSpeed;
     }
 
-    private void ConstrainPlayerPosition()
+    private void ClampPosition()
     {
-        // Clamp the player's position within the bounds
-        playerRb.position = new Vector3(
-            Mathf.Clamp(playerRb.position.x, -xBounds, xBounds),
-            playerRb.position.y,
-            Mathf.Clamp(playerRb.position.z, -zBounds, zBounds)
-        );
+        Vector3 pos = rb.position;
+        pos.x = Mathf.Clamp(pos.x, -xBounds, xBounds);
+        pos.z = Mathf.Clamp(pos.z, -zBounds, zBounds);
+        rb.position = pos;
     }
 }
