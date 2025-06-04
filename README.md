@@ -18,7 +18,7 @@ A personal Unity project showcasing tank combat mechanics
 
 ## Repository Structure
 
-- **`master` branch**: Overview and documentation
+- **`main` branch**: Overview and documentation
 - **Individual project branches**: Complete Unity projects with full git history
 - Each project branch contains:
   - `Assets/` - Unity assets, scripts, scenes, and resources
