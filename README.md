@@ -43,5 +43,5 @@ git branch -a
 To switch back to the overview:
 
 ```bash
-git checkout master
+git checkout main
 ```
