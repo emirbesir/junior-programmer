@@ -6,10 +6,10 @@ public class EnemyMovement : MonoBehaviour
     private Transform _target;
     private Rigidbody2D _rb2d;
 
-    public void Initialize(EnemyConfig config, Transform target)
+    public void Initialize(EnemyConfig config)
     {
         _config = config;
-        _target = target;
+        _target = GameObject.FindGameObjectWithTag("Campfire").transform;
         _rb2d = GetComponent<Rigidbody2D>();
     }
     

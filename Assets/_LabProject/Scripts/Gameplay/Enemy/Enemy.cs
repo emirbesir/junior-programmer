@@ -3,7 +3,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyConfig config;
-    [SerializeField] private Transform target;
 
     private EnemyHealth _health;
     private EnemyAttack _attack;
@@ -21,10 +20,12 @@ public class Enemy : MonoBehaviour
         InitializeEnemy();
     }
 
-    private void InitializeEnemy()
+    public void InitializeEnemy() => InitializeEnemy(config);
+
+    public void InitializeEnemy(EnemyConfig customConfig)
     {
-        _health?.Initialize(config);
-        _attack?.Initialize(config);
-        _movement?.Initialize(config, target);
+        _health?.Initialize(customConfig);
+        _attack?.Initialize(customConfig);
+        _movement?.Initialize(customConfig);
     }
 }

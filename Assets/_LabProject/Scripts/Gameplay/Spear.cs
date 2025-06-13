@@ -3,7 +3,7 @@ using UnityEngine;
 public class Spear : MonoBehaviour
 {
     [Header("Spear Settings")]
-    [SerializeField] private float speed = 9f;
+    [SerializeField] private float speed = 10f;
     
     private float _damage;
     private Vector3 _moveDirection;
