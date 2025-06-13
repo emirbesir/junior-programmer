@@ -15,13 +15,8 @@ public class EnemyAttack : MonoBehaviour
     {
         if (Time.time >= _nextAttackTime && other.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            Attack(damageable);
+            damageable.TakeDamage(_config.AttackDamage);
+            _nextAttackTime = Time.time + _config.TimeBetweenAttacks;
         }
-    }
-
-    private void Attack(IDamageable damageable)
-    {
-        damageable.TakeDamage(_config.AttackDamage);
-        _nextAttackTime = Time.time + _config.TimeBetweenAttacks;
     }
 }
