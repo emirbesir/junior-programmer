@@ -8,7 +8,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private List<EnemyConfig> enemyConfigs;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private float spawnInterval = 3f;
+    [SerializeField] private float spawnDistance = 15f;
 
     private float _nextSpawnTime;
 
@@ -29,30 +30,26 @@ public class SpawnManager : MonoBehaviour
     private void SpawnEnemy()
     {
         EnemyConfig selectedConfig = GetRandomEnemyConfig();
-
         Vector3 spawnPosition = GetRandomSpawnPosition();
+
         GameObject enemyInstance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
+        
         enemyComponent.InitializeEnemy(selectedConfig);
     }
 
     private Vector3 GetRandomSpawnPosition()
     {
-        float x = Random.Range(-8f, 8f);
-        float y = Random.Range(-4f, 4f);
-        Vector3 spawnPosition = new Vector3(x, y, 0f);
+        float angle = Random.Range(0f, 2 * Mathf.PI);
 
-        return spawnPosition;
+        float x = Mathf.Cos(angle) * spawnDistance;
+        float y = Mathf.Sin(angle) * spawnDistance;
+
+        return new Vector3(x, y, 0f);
     }
-    
+
     private EnemyConfig GetRandomEnemyConfig()
     {
-        if (enemyConfigs.Count == 0)
-        {
-            Debug.LogWarning("No enemy configs available.");
-            return null;
-        }
-
         int randomIndex = Random.Range(0, enemyConfigs.Count);
         return enemyConfigs[randomIndex];
     }
