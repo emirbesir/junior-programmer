@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7529352196392442224}
   - component: {fileID: 519626867802003392}
+  - component: {fileID: 3310415248849252181}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -286,3 +287,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &3310415248849252181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987857491519980214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b827deb037bb748a8d2ee97b12cfc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 250
+  currentHealth: 0
