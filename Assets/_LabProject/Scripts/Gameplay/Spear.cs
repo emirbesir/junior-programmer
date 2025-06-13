@@ -7,13 +7,13 @@ public class Spear : MonoBehaviour
     
     private float _damage;
     private Vector3 _moveDirection;
-    
+
     public void InitializeSpear(float damage, Vector3 moveDirNormalized)
     {
         _damage = damage;
         _moveDirection = moveDirNormalized;
     }
-    
+
     private void Update()
     {
         transform.Translate(speed * Time.deltaTime * _moveDirection, Space.World);
