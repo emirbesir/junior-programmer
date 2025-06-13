@@ -1,17 +1,15 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float speed = 5f;
-
+    private PlayerConfig _config;
     private Vector2 _movementInput;
     private Rigidbody2D _rb2d;
 
-    private void Awake()
+    public void Initialize(PlayerConfig config)
     {
+        _config = config;
         _rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -27,6 +25,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        _rb2d.linearVelocity = _movementInput.normalized * speed;
+        _rb2d.linearVelocity = _movementInput.normalized * _config.Speed;
     }
 }
