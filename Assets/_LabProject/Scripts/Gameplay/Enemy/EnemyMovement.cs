@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {   
     [SerializeField] private FloatVariable _moveSpeed;
-    private Transform _moveTarget;
 
+    private Transform _moveTarget;
     private Rigidbody2D _rb2d;
 
     private void Awake()
@@ -15,7 +15,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveEnemy();
+        if (_moveTarget != null)
+        {
+            MoveEnemy();
+        }
     }
 
     private void MoveEnemy()
