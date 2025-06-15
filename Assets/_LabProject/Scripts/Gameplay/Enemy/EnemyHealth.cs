@@ -2,13 +2,26 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    private EnemyConfig _config;
-    private float _currentHealth;
+    [SerializeField] private FloatReference _startingHealth;
+    [SerializeField] private bool _resetOnStart = true;
     
-    public void Initialize(EnemyConfig config)
+    private float _currentHealth;
+
+    private void Start()
     {
-        _config = config;
-        _currentHealth = _config.MaxHealth;
+        if (_resetOnStart)
+        {
+            _currentHealth = _startingHealth.Value;
+        }
+    }
+
+    public void Heal(float healAmount)
+    {
+        _currentHealth += healAmount;
+        if (_currentHealth > _startingHealth.Value)
+        {
+            _currentHealth = _startingHealth.Value;
+        }
     }
 
     public void TakeDamage(float damage)

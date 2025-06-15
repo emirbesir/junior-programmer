@@ -5,7 +5,6 @@ public class SpawnManager : MonoBehaviour
 {
     [Header("Enemy Settings")]
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private List<EnemyConfig> enemyConfigs;
 
     [Header("Spawn Settings")]
     [SerializeField] private float spawnInterval = 3f;
@@ -29,13 +28,8 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        EnemyConfig selectedConfig = GetRandomEnemyConfig();
         Vector3 spawnPosition = GetRandomSpawnPosition();
-
-        GameObject enemyInstance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
-        
-        enemyComponent.InitializeEnemy(selectedConfig);
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -46,11 +40,5 @@ public class SpawnManager : MonoBehaviour
         float y = Mathf.Sin(angle) * spawnDistance;
 
         return new Vector3(x, y, 0f);
-    }
-
-    private EnemyConfig GetRandomEnemyConfig()
-    {
-        int randomIndex = Random.Range(0, enemyConfigs.Count);
-        return enemyConfigs[randomIndex];
     }
 }

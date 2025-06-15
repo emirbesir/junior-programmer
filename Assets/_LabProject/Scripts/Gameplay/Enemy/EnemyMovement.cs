@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {   
-    private EnemyConfig _config;
-    private Transform _target;
+    [SerializeField] private FloatVariable _moveSpeed;
+    private Transform _moveTarget;
+
     private Rigidbody2D _rb2d;
 
-    public void Initialize(EnemyConfig config)
+    private void Awake()
     {
-        _config = config;
-        _target = GameObject.FindGameObjectWithTag("Campfire").transform;
         _rb2d = GetComponent<Rigidbody2D>();
+        _moveTarget = GameObject.FindGameObjectWithTag("Campfire").transform;
     }
-    
+
     private void FixedUpdate()
     {
         MoveEnemy();
@@ -20,6 +20,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void MoveEnemy()
     {
-        _rb2d.linearVelocity = (_target.position - transform.position).normalized * _config.Speed;
+        _rb2d.linearVelocity = (_moveTarget.position - transform.position).normalized * _moveSpeed.Value;
     }
 }

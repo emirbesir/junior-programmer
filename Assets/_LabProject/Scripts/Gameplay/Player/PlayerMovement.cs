@@ -3,13 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerConfig _config;
+    [SerializeField] private FloatVariable _moveSpeed;
+
     private Vector2 _movementInput;
     private Rigidbody2D _rb2d;
 
-    public void Initialize(PlayerConfig config)
+    private void Awake()
     {
-        _config = config;
         _rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -25,6 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        _rb2d.linearVelocity = _movementInput.normalized * _config.Speed;
+        _rb2d.linearVelocity = _movementInput.normalized * _moveSpeed.Value;
     }
 }

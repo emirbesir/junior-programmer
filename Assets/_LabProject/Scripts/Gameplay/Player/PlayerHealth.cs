@@ -2,28 +2,31 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
-    private PlayerConfig _config;
-    private float _currentHealth;
+    [SerializeField] private FloatReference _startingHealth;
+    [SerializeField] private FloatVariable _currentHealth;
+    [SerializeField] private bool _resetOnStart = true;
 
-    public void Initialize(PlayerConfig config)
+    private void Start()
     {
-        _config = config;
-        _currentHealth = _config.MaxHealth;
+        if (_resetOnStart)
+        {
+            _currentHealth.SetValue(_startingHealth.Value);
+        }
     }
 
-    public void Heal(float amount)
+    public void Heal(float healAmount)
     {
-        _currentHealth += amount;
-        if (_currentHealth > _config.MaxHealth)
+        _currentHealth.ApplyChange(healAmount);
+        if (_currentHealth.Value > _startingHealth.Value)
         {
-            _currentHealth = _config.MaxHealth;
+            _currentHealth.SetValue(_startingHealth.Value);
         }
     }
     
     public void TakeDamage(float damage)
     {
-        _currentHealth -= damage;
-        if (_currentHealth <= 0)
+        _currentHealth.ApplyChange(-damage);
+        if (_currentHealth.Value <= 0)
         {
             Die();
         }

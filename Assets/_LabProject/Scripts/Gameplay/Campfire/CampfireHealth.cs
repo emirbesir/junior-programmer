@@ -3,18 +3,22 @@ using UnityEngine;
 public class CampfireHealth : MonoBehaviour, IDamageable
 {
     [Header("Health Settings")]
-    [SerializeField] private float maxHealth = 100;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private FloatReference _startingHealth;
+    [SerializeField] private bool _resetOnStart = true;
+    [SerializeField] private FloatVariable _currentHealth;
 
-    private void Awake()
+    private void Start()
     {
-        currentHealth = maxHealth;
+        if (_resetOnStart)
+        {
+            _currentHealth.SetValue(_startingHealth.Value);
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        _currentHealth.ApplyChange(-damage);
+        if (_currentHealth.Value <= 0)
         {
             DestroyCampfire();
         }

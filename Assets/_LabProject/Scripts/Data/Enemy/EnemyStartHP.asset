@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f28e1b91cccf5a49bfa30b44d6dab41, type: 3}
-  m_Name: Basic
+  m_Script: {fileID: 11500000, guid: 2c0aa13a6052a6d479203995a1e405f9, type: 3}
+  m_Name: EnemyStartHP
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  AttackDamage: 10
-  TimeBetweenAttacks: 1
-  Speed: 2
+  DeveloperDescription: 
+  Value: 50

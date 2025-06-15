@@ -299,5 +299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b827deb037bb748a8d2ee97b12cfc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
-  currentHealth: 0
+  _startingHealth:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 8712f22574e7e3344ba091cb2fceba24, type: 2}
+  _resetOnStart: 1
+  _currentHealth: {fileID: 11400000, guid: 3dc4bfae0c75a0644a1b6be73880cf3a, type: 2}

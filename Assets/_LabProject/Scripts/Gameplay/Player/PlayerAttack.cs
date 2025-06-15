@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private PlayerConfig _config;
-    private GameObject _projectilePrefab;
+    [SerializeField] private FloatVariable _attackDamage;
+    [SerializeField] private FloatVariable _timeBetweenAttacks;
+    [SerializeField] private GameObject _projectilePrefab;
+
     private float _nextAttackTime;
 
-    public void Initialize(PlayerConfig config, GameObject projectilePrefab)
+    private void Start()
     {
-        _config = config;
-        _projectilePrefab = projectilePrefab;
-        _nextAttackTime = Time.time + _config.TimeBetweenAttacks;
+        _nextAttackTime = Time.time + _timeBetweenAttacks.Value;
+
     }
 
     private void Update()
@@ -18,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButton(0) && Time.time >= _nextAttackTime)
         {
             PerformAttack();
-            _nextAttackTime = Time.time + _config.TimeBetweenAttacks;
+            _nextAttackTime = Time.time + _timeBetweenAttacks.Value;
         }
     }
 
@@ -33,6 +34,6 @@ public class PlayerAttack : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         
         GameObject newProjectile = Instantiate(_projectilePrefab, transform.position, rotation);
-        newProjectile.GetComponent<Spear>().InitializeSpear(_config.AttackDamage, lookDirNormalized);
+        newProjectile.GetComponent<Spear>().InitializeSpear(_attackDamage.Value, lookDirNormalized);
     }
 }

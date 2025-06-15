@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private EnemyConfig _config;
+    [SerializeField] private FloatVariable _attackDamage;
+    [SerializeField] private FloatVariable _timeBetweenAttacks;
     private float _nextAttackTime;
 
-    public void Initialize(EnemyConfig config)
+    private void Start()
     {
-        _config = config;
-        _nextAttackTime = Time.time + _config.TimeBetweenAttacks;
+        _nextAttackTime = Time.time + _timeBetweenAttacks.Value;
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
         if (Time.time >= _nextAttackTime && other.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(_config.AttackDamage);
-            _nextAttackTime = Time.time + _config.TimeBetweenAttacks;
+            damageable.TakeDamage(_attackDamage.Value);
+            _nextAttackTime = Time.time + _timeBetweenAttacks.Value;
         }
     }
 }
