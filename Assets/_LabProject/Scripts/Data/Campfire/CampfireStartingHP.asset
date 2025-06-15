@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0aa13a6052a6d479203995a1e405f9, type: 3}
   m_Name: CampfireStartingHP
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
+  DeveloperDescription: Starting health point of the campfire
   Value: 500

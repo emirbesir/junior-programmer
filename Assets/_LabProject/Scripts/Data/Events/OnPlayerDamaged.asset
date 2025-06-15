@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c0aa13a6052a6d479203995a1e405f9, type: 3}
-  m_Name: EnemyStartHP
+  m_Script: {fileID: 11500000, guid: 73c03eec9a5da9f498cfc695b4397b28, type: 3}
+  m_Name: OnPlayerDamaged
   m_EditorClassIdentifier: 
-  DeveloperDescription: Starting health point of the enemy
-  Value: 50

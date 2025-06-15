@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CampfireHealth : MonoBehaviour, IDamageable
 {
@@ -6,6 +7,9 @@ public class CampfireHealth : MonoBehaviour, IDamageable
     [SerializeField] private FloatReference _startingHealth;
     [SerializeField] private bool _resetOnStart = true;
     [SerializeField] private FloatVariable _currentHealth;
+    [Header("Events")]
+    [SerializeField] private UnityEvent _onDamageEvent;
+    [SerializeField] private UnityEvent _onDeathEvent;
 
     private void Start()
     {
@@ -17,6 +21,7 @@ public class CampfireHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        _onDamageEvent.Invoke();
         _currentHealth.ApplyChange(-damage);
         if (_currentHealth.Value <= 0)
         {
@@ -26,6 +31,7 @@ public class CampfireHealth : MonoBehaviour, IDamageable
 
     private void DestroyCampfire()
     {
+        _onDeathEvent.Invoke();
         Destroy(gameObject);
     }
 }
