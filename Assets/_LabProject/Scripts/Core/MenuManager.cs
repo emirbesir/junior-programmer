@@ -4,21 +4,12 @@ using UnityEngine.Events;
 
 public class MenuManager : MonoBehaviour
 {
-    [Header("Menus")]
-    [SerializeField] private GameObject _pauseMenu;
-    [SerializeField] private GameObject _gameOverMenu;
-
     [Header("Events")]
     [SerializeField] private UnityEvent _onPauseEvent;
     [SerializeField] private UnityEvent _onResumeEvent;
 
     private List<GameObject> _activeMenus = new List<GameObject>();
-
-    private void Start()
-    {
-        _pauseMenu.SetActive(false);
-        _gameOverMenu.SetActive(false);
-    }
+    private bool _isPaused = false;
 
     private void Update()
     {
@@ -28,31 +19,44 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void ShowGameOverMenu()
+    private void TogglePauseMenu()
     {
-        foreach (var menu in _activeMenus)
+        if (_isPaused)
         {
-            menu.SetActive(false);
-        }
-        _activeMenus.Clear();
-        _gameOverMenu.SetActive(true);
-    }
-
-    public void TogglePauseMenu()
-    {
-        if (_pauseMenu.activeSelf)
-        {
+            _isPaused = false;
             _onResumeEvent.Invoke();
-            _pauseMenu.SetActive(false);
-            _activeMenus.Remove(_pauseMenu);
-            Time.timeScale = 1f; // Resume the game
         }
         else
         {
+            _isPaused = true;
             _onPauseEvent.Invoke();
-            _pauseMenu.SetActive(true);
-            _activeMenus.Add(_pauseMenu);
-            Time.timeScale = 0f; // Pause the game
         }
+    }
+
+    public void ShowMenu(GameObject menu)
+    {
+        if (!menu.activeSelf)
+        {
+            _activeMenus.Add(menu);
+            menu.SetActive(true);
+        }
+    }
+
+    public void HideMenu(GameObject menu)
+    {
+        if (menu.activeSelf)
+        {
+            _activeMenus.Remove(menu);
+            menu.SetActive(false);
+        }
+    }
+
+    public void HideAllMenus()
+    {
+        foreach (var activeMenu in _activeMenus)
+        {
+            activeMenu.SetActive(false);
+        }
+        _activeMenus.Clear();
     }
 }

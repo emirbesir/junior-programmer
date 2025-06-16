@@ -1,14 +1,25 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public void StopTime()
+    [Header("Game Settings")]
+    [SerializeField] private FloatReference _levelTimeLimit;
+    [SerializeField] private FloatVariable _timeElapsed;
+    [SerializeField] private UnityEvent _onGameWinEvent;
+
+    private void Start()
     {
-        Time.timeScale = 0f;
+        _timeElapsed.SetValue(0f);
     }
 
-    public void ResumeTime()
+    private void Update()
     {
-        Time.timeScale = 1f;
+        _timeElapsed.SetValue(_timeElapsed.Value + Time.deltaTime);
+
+        if (_timeElapsed.Value >= _levelTimeLimit.Value)
+        {
+            _onGameWinEvent.Invoke();
+        }
     }
 }
