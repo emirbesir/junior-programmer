@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MenuManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [Header("Events")]
     [SerializeField] private UnityEvent _onPauseEvent;
@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void TogglePauseMenu()
+    public void TogglePauseMenu()
     {
         if (_isPaused)
         {

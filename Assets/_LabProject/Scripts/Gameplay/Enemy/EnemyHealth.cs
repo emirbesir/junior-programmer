@@ -1,9 +1,13 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private FloatReference _startingHealth;
     [SerializeField] private bool _resetOnStart = true;
+    [SerializeField] private UnityEvent _onEnemyDamaged;
+    [SerializeField] private UnityEvent _onEnemyDeath;
     
     private float _currentHealth;
 
@@ -31,10 +35,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             Die();
         }
+        _onEnemyDamaged.Invoke();
     }
 
     private void Die()
     {
+        _onEnemyDeath.Invoke();
         Destroy(gameObject);
     }
 }
