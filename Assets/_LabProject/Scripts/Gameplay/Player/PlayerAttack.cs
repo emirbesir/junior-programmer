@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private FloatVariable _attackDamage;
     [SerializeField] private FloatVariable _timeBetweenAttacks;
     [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private UnityEvent _onAttackEvent;
 
     private float _nextAttackTime;
 
@@ -25,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void PerformAttack()
     {
+        _onAttackEvent.Invoke();
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
 

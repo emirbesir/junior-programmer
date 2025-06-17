@@ -13,7 +13,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (Time.time >= _nextAttackTime && other.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        if (Time.time >= _nextAttackTime && other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !other.gameObject.TryGetComponent<EnemyHealth>(out _))
         {
             damageable.TakeDamage(_attackDamage.Value);
             _nextAttackTime = Time.time + _timeBetweenAttacks.Value;

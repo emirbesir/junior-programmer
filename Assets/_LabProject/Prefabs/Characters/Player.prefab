@@ -336,7 +336,7 @@ MonoBehaviour:
   _onDeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 773c511296a09a44e8e4f066d4c51eae, type: 2}
+      - m_Target: {fileID: 11400000, guid: 9ed2e80520fdcbf418f70ca83d83c62b, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: Raise
         m_Mode: 1
@@ -363,6 +363,21 @@ MonoBehaviour:
   _attackDamage: {fileID: 11400000, guid: 95af180102949294f8fd3920a862130a, type: 2}
   _timeBetweenAttacks: {fileID: 11400000, guid: 1e1f5a65dd541cc4dbad32837a81171c, type: 2}
   _projectilePrefab: {fileID: 3228549323160504974, guid: cdc80ef40bc9de848819fa34b9d41652, type: 3}
+  _onAttackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 95ed80c847c6ba248bfddb642f729599, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7700942647820376986
 GameObject:
   m_ObjectHideFlags: 0
