@@ -36,7 +36,7 @@ public class GameTimeDisplay : MonoBehaviour
     {
         float hours = Mathf.Abs(_gameEndHour.Value - _gameStartHour.Value);
         float hoursElapsed = _timeElapsed.Value * hours / _timeLimit.Value;
-        float currentTime = _gameStartHour.Value + hoursElapsed % HOURS_IN_DAY;
+        float currentTime = (_gameStartHour.Value + hoursElapsed) % HOURS_IN_DAY;
         return currentTime;
     }
 }
