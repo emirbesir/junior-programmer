@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 11a653b9169986c4f9436a3002fb4516
+timeCreated: 1547159175
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146041
+  packageName: Create with Code | Prototype 4 - Sumo Battle
+  packageVersion: 1.0
+  assetPath: Assets/Course Library/Objects/Indicators/SelectionRing_06.prefab
+  uploadId: 326629

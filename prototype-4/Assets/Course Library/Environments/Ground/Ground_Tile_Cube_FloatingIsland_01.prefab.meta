@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c18b0566c0ca32548acca53d337698db
+timeCreated: 1520391271
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146041
+  packageName: Create with Code | Prototype 4 - Sumo Battle
+  packageVersion: 1.0
+  assetPath: Assets/Course Library/Environments/Ground/Ground_Tile_Cube_FloatingIsland_01.prefab
+  uploadId: 326629

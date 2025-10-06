@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 18d064e59e399ac4ebf74eada94947af
+timeCreated: 1462417702
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146041
+  packageName: Create with Code | Prototype 4 - Sumo Battle
+  packageVersion: 1.0
+  assetPath: Assets/Course Library/Objects/Pickups/FireIcon.prefab
+  uploadId: 326629
